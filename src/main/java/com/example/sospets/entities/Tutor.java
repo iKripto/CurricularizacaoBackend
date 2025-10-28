@@ -1,6 +1,9 @@
 package com.example.sospets.entities;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +18,6 @@ import java.util.List;
 public class Tutor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String cpf;
     private String nome;
     private String rg;
@@ -25,10 +27,6 @@ public class Tutor {
 
 
     @OneToMany(mappedBy = "tutor")
+    @JsonIgnore
     private List<Animal> animais;
-
-    public Tutor(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-    }
 }

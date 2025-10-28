@@ -1,5 +1,6 @@
 package com.example.sospets.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class Cor {
     private String descricao;
 
     @OneToMany(mappedBy = "cor")
+    @JsonIgnore
     private List<Animal> animais;
 }

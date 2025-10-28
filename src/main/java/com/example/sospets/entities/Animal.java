@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,4 +36,8 @@ public class Animal {
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "cor_id")
     private Cor cor;
+
+    @OneToMany(mappedBy = "animal")
+    @JsonIgnore
+    private List<Atendimento> atendimentos;
 }

@@ -1,9 +1,13 @@
 package com.example.sospets.entities;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data
@@ -20,5 +24,6 @@ public class Funcionario {
     private String endereco;
 
     @OneToMany(mappedBy = "funcionario")
+    @JsonIgnore
     private List<Atendimento> atendimentos;
 }

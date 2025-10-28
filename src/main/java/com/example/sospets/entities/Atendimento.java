@@ -19,6 +19,10 @@ public class Atendimento {
     private double valor;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "clinica_id")
     private Clinica clinica;
 

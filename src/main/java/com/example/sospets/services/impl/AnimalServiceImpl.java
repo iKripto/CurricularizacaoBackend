@@ -1,8 +1,10 @@
 package com.example.sospets.services.impl;
 
 import com.example.sospets.entities.Animal;
+import com.example.sospets.entities.Cor;
 import com.example.sospets.enums.Especie;
 import com.example.sospets.repositories.AnimalRepo;
+import com.example.sospets.repositories.CorRepo;
 import com.example.sospets.services.AnimalService;
 import com.example.sospets.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -19,10 +21,16 @@ public class AnimalServiceImpl implements AnimalService {
     private AnimalRepo repository;
 
     @Autowired
+    private CorRepo corRepo;
+
+    @Autowired
     private ModelMapper mapper;
 
     @Override
     public Animal create(Animal animal) {
+        Cor cor = corRepo.findById(animal.getCor().getId())
+                .orElseThrow(() -> new ObjectNotFoundException("Cor não encontrada"));
+        animal.setCor(cor);
         return repository.save(mapper.map(animal, Animal.class));
     }
 
