@@ -1,6 +1,8 @@
 package com.example.sospets.entities;
 
 import com.example.sospets.enums.Especie;
+import com.example.sospets.enums.Porte;
+import com.example.sospets.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,11 +23,11 @@ public class Animal {
     private int id;
     private String nome;
     private String raca;
-    private String porte;
+    private Porte porte;
     private LocalDate dataNascimento;
     private boolean eFilhote;
     private Especie especie;
-    private String sexo;
+    private Sexo sexo;
     private boolean statusAcolhimento;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
