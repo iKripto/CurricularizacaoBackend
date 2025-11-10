@@ -9,6 +9,10 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
+# --- CORREÇÃO ADICIONADA AQUI ---
+# Dá permissão de execução ao script do Maven Wrapper
+RUN chmod +x mvnw
+
 # Baixa as dependências do Maven (acelera builds futuros)
 RUN ./mvnw dependency:go-offline
 
@@ -34,3 +38,5 @@ EXPOSE 8080
 # Comando para iniciar a aplicação
 # O perfil (prod) será definido nas variáveis de ambiente do Render
 CMD ["java", "-jar", "app.jar"]
+
+RUN chmod +x mvnw
